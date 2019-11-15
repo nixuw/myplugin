@@ -1,17 +1,15 @@
 package = "myplugin"
 version = "1.0"
 source = {
-   url = "git://github.com/me/luafruits",
+   url = "https://github.com/nixuw/myplugin",
    tag = "v1.0",
 }
 description = {
-   summary = "An example for the LuaRocks tutorial.",
+   summary = "test myplugin",
    detailed = [[
-      This is an example for the LuaRocks tutorial.
-      Here we would put a detailed, typically
-      paragraph-long description.
+      just test
    ]],
-   homepage = "http://me.github.com/luafruits",
+   homepage = "https://github.com/nixuw",
    license = "MIT/X11"
 }
 dependencies = {
@@ -21,10 +19,8 @@ dependencies = {
 build = {
    type = "builtin",
    modules = {
-      apricot = "src/apricot.lua",
-      ["apricot.seeds"] = "src/apricot/seeds.lua",
-      banana = "src/banana.c",
-      cherry = {"src/cherry.c", "src/cherry_pie.c"},
+      myplugin = "kong/plugins/myplugin/handler.lua",
+     },
 
    },
 
