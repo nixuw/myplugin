@@ -3,6 +3,8 @@
 --- Created by wuxin.
 --- DateTime: 2019-11-14 18:12
 ---
+local redismod = require "resty.redis"
+local red = redismod:new()
 
 local kong = kong
 
@@ -12,6 +14,26 @@ myplugin.VERSION="1.0"
 
 function myplugin:access(conf)
     kong.log.err("in myplugin............")
+    red.connect("127.0.0.1", 6379)
+    if not ok then
+        ngx.say("failed to connect: ", err)
+        return
+    end
+    ok, err = red:set("dog", "an animal")
+    if not ok then
+        ngx.say("failed to set dog: ", err)
+        return
+    end
+
+    ngx.say("set result: ", ok)
+
+    local res, err = red:get("dog")
+    if not res then
+        ngx.say("failed to get dog: ", err)
+        return
+    end
+    ngx.say("...................",res)
+
 end
 
 return myplugin
